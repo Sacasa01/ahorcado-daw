@@ -38,14 +38,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['letra'])) {
 
 // Comprobar si se ha ganado o perdido
 if ($_SESSION['letras_acertadas'] == $_SESSION['palabra']) {
-    echo "¡Enhorabuena! Has ganado :) La palabra era: " . $_SESSION['palabra'] . "<br>";
-    session_destroy();
-    echo '<a href="">Jugar de nuevo</a>';
+    header('Location: ganaste.php');
     exit();
 } elseif ($_SESSION['vidas'] <= 0) {
-    echo "Lo siento, has perdido :( La palabra era: " . $_SESSION['palabra'] . "<br>";
-    session_destroy();
-    echo '<a href="">Jugar de nuevo</a>';
+    header('Location: perdiste.php');
     exit();
 }
 ?>
@@ -67,8 +63,8 @@ if ($_SESSION['letras_acertadas'] == $_SESSION['palabra']) {
     </form>
     <p>Letras usadas: <?php echo implode(', ', $_SESSION['letras_usadas']); ?></p>
 <!-- Code injected by live-server -->
-<script>
-	// <![CDATA[  <-- For SVG support
+<!-- <script>
+
 	if ('WebSocket' in window) {
 		(function () {
 			function refreshCSS() {
@@ -102,7 +98,7 @@ if ($_SESSION['letras_acertadas'] == $_SESSION['palabra']) {
 	else {
 		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
 	}
-	// ]]>
-</script>
+
+</script> -->
 </body>
 </html>
